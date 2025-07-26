@@ -5,193 +5,237 @@
 ![JWT Auth](https://img.shields.io/badge/Auth-JWT-brightgreen)
 ![Responsive](https://img.shields.io/badge/UI-Responsive-orange)
 
-A feature-rich social media platform built with the MEAN stack (MongoDB, Express.js, Angular, and Node.js) featuring JWT authentication, post management, and user interactions.
+**SociConnect** is a feature-rich social media platform built with the MEAN stack (MongoDB, Express.js, Angular, and Node.js), offering JWT-based authentication, post management, user profiles, and interactive UI elements.
 
-## ✨ Key Features
+---
 
-### 🔒 Authentication System
-- JWT-based user authentication
-- Secure password storage with bcrypt hashing
-- Protected API endpoints
-- Persistent login with localStorage
+## ✨ Features
+
+### 🔒 Authentication
+- Secure JWT-based login system
+- Password hashing with bcrypt
+- Auth-protected API routes
+- Persistent login with `localStorage`
 
 ### 📝 Post Management
 - Create, edit, and delete posts
-- Rich post format (text, images)
-- Personalized feed (user-specific posts)
-- Like/comment functionality
+- Rich content support (text, images)
+- Personalized feed for each user
+- Like and comment functionality
 
 ### 👤 User Profiles
-- Profile information display
-- Username and avatar across posts
-- User-specific actions and data
+- Display username, avatar, and profile details
+- View posts by user
+- Edit personal info (upcoming)
 
-### 🎨 Modern UI
-- Clean, Facebook/Twitter-inspired design
-- Responsive layout (mobile-friendly)
-- Interactive elements with Angular
-- Real-time data updates
+### 🎨 Responsive UI
+- Facebook/Twitter-inspired design
+- Mobile-friendly layout
+- Built with Angular + Bootstrap
+- Real-time updates via observables
 
-## 🛠️ Tech Stack
+---
 
-**Frontend**:
+## 🛠 Tech Stack
+
+**Frontend**
 - Angular 15+
-- RxJS for state management
-- HTML5/CSS3
-- Bootstrap for responsive design
+- RxJS for reactive state
+- Bootstrap, HTML5, CSS3
 
-**Backend**:
+**Backend**
 - Node.js 16+
 - Express.js
-- MongoDB Atlas (Cloud Database)
+- MongoDB Atlas
 - Mongoose ODM
 
-**Authentication**:
+**Authentication**
 - JSON Web Tokens (JWT)
-- bcrypt for password hashing
-- Protected routes middleware
+- bcrypt for password encryption
+- Auth middleware for route protection
+
+---
 
 ## 📂 Project Structure
 
 ```
+
 social-media-app/
-├── backend/                 # Node.js/Express server
-│   ├── config/              # Database and environment config
-│   ├── controllers/         # Route controllers
-│   ├── middleware/          # Auth middleware
-│   ├── models/              # Mongoose models
-│   ├── routes/              # API routes
-│   ├── server.js            # Server entry point
-│   └── .env                 # Environment variables
+├── backend/
+│   ├── config/          # DB and environment configs
+│   ├── controllers/     # Business logic
+│   ├── middleware/      # JWT auth middleware
+│   ├── models/          # Mongoose schemas
+│   ├── routes/          # API route definitions
+│   ├── server.js        # Express app entry point
+│   └── .env             # Environment variables
 │
-├── frontend/                # Angular application
+├── frontend/
 │   ├── src/
 │   │   ├── app/
-│   │   │   ├── components/  # Angular components
-│   │   │   ├── services/    # API services
-│   │   │   ├── models/      # Frontend models
-│   │   │   └── guards/      # Route guards
-│   │   ├── assets/          # Images, styles
-│   │   └── environments/    # Angular environments
-│   └── angular.json         # Angular config
+│   │   │   ├── components/  # UI components
+│   │   │   ├── services/    # API interaction
+│   │   │   ├── models/      # TypeScript interfaces
+│   │   │   └── guards/      # Auth route guards
+│   │   ├── assets/          # Images and styles
+│   │   └── environments/    # Environment configs
+│   └── angular.json         # Angular CLI config
 │
 ├── .gitignore
 ├── package.json
 └── README.md
-```
+
+````
+
+---
 
 ## 🚀 Installation Guide
 
-### Prerequisites
-- Node.js 16+
-- Angular CLI 15+
-- MongoDB Atlas account (or local MongoDB)
+### 🔧 Prerequisites
+- Node.js v16 or later
+- Angular CLI v15+
+- MongoDB Atlas account (or local MongoDB setup)
 
-### Backend Setup
-1. Navigate to backend folder:
-   ```bash
-   cd backend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create `.env` file:
-   ```env
-   MONGO_URI=mongodb+srv://<username>:<password>@cluster0.example.mongodb.net/socialdb?retryWrites=true&w=majority
-   JWT_SECRET=your_strong_secret_here
-   PORT=3000
-   ```
-4. Start the server:
-   ```bash
-   npm start
-   ```
+### 🔙 Backend Setup
+```bash
+cd backend
+npm install
+````
 
-### Frontend Setup
-1. Navigate to frontend folder:
-   ```bash
-   cd frontend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Configure API base URL in `environment.ts`:
-   ```typescript
-   export const environment = {
-     production: false,
-     apiUrl: 'http://localhost:3000/api'
-   };
-   ```
-4. Start Angular dev server:
-   ```bash
-   ng serve
-   ```
-5. Open `http://localhost:4200` in your browser
+Create a `.env` file:
 
-## 🌐 API Documentation
+```env
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/socialdb
+JWT_SECRET=your_strong_secret
+PORT=3000
+```
 
-### Authentication
-| Endpoint           | Method | Description                     |
-|--------------------|--------|---------------------------------|
-| `/api/auth/login`  | POST   | Authenticate user, returns JWT  |
+Start the server:
 
-### Users
-| Endpoint                          | Method | Description                     |
-|-----------------------------------|--------|---------------------------------|
-| `/api/users/:id`                  | GET    | Get user by ID                  |
-| `/api/users/username/:username`   | GET    | Get user by username            |
+```bash
+npm start
+```
 
-### Posts (JWT Protected)
-| Endpoint               | Method | Description                     |
-|------------------------|--------|---------------------------------|
-| `/api/posts`           | GET    | Get all posts for current user  |
-| `/api/posts`           | POST   | Create new post                 |
-| `/api/posts/:id`       | PUT    | Update post                     |
-| `/api/posts/:id`       | DELETE | Delete post                     |
-| `/api/posts/:id/like`  | POST   | Like/unlike a post              |
-| `/api/posts/:id/comment` | POST | Add comment to post            |
+### 🖥 Frontend Setup
+
+```bash
+cd frontend
+npm install
+```
+
+Edit `src/environments/environment.ts`:
+
+```ts
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000/api'
+};
+```
+
+Run the dev server:
+
+```bash
+ng serve
+```
+
+Visit: `http://localhost:4200`
+
+---
+
+## 📡 API Documentation
+
+### 🔐 Authentication
+
+| Method | Endpoint          | Description                   |
+| ------ | ----------------- | ----------------------------- |
+| POST   | `/api/auth/login` | Authenticate user, return JWT |
+
+### 👤 Users
+
+| Method | Endpoint                        | Description          |
+| ------ | ------------------------------- | -------------------- |
+| GET    | `/api/users/:id`                | Get user by ID       |
+| GET    | `/api/users/username/:username` | Get user by username |
+
+### 📝 Posts (JWT Protected)
+
+| Method | Endpoint                 | Description           |
+| ------ | ------------------------ | --------------------- |
+| GET    | `/api/posts`             | Fetch user posts      |
+| POST   | `/api/posts`             | Create a post         |
+| PUT    | `/api/posts/:id`         | Update a post         |
+| DELETE | `/api/posts/:id`         | Delete a post         |
+| POST   | `/api/posts/:id/like`    | Like/unlike a post    |
+| POST   | `/api/posts/:id/comment` | Add comment to a post |
+
+---
 
 ## 📸 Screenshots
 
-![Login Screen](https://i.imgur.com/example1.png) 
-*Login Page with form validation*
+| Login Page                                 | Dashboard                                      | Create Post                               |
+| ------------------------------------------ | ---------------------------------------------- | ----------------------------------------- |
+| ![Login](https://i.imgur.com/example1.png) | ![Dashboard](https://i.imgur.com/example2.png) | ![Post](https://i.imgur.com/example3.png) |
 
-![Dashboard](https://i.imgur.com/example2.png)
-*User dashboard with posts feed*
+---
 
-![Post Creation](https://i.imgur.com/example3.png)
-*Create new post interface*
+## 🛡 Security Highlights
 
-## 🛡️ Security Features
-- JWT token expiration (1 hour)
-- HTTP-only cookies for sensitive data
-- Password hashing with bcrypt
-- Protected API endpoints
-- Input sanitization
-- CORS policy configuration
+* JWT token expiration (1hr)
+* HTTP-only cookie usage (optional)
+* Encrypted passwords (bcrypt)
+* Protected API routes
+* Input sanitization
+* Configurable CORS
 
-## 📅 Future Roadmap
-- [ ] User registration page
-- [ ] Profile picture uploads
-- [ ] Real-time notifications
-- [ ] Friends/follow system
-- [ ] Dark mode toggle
-- [ ] Post sharing feature
-- [ ] Advanced search functionality
+---
+
+## 📅 Roadmap
+
+* [ ] 🧾 User registration page
+* [ ] 🖼 Profile picture upload
+* [ ] 🔔 Real-time notifications
+* [ ] 👥 Friends/follow system
+* [ ] 🌙 Dark mode toggle
+* [ ] 🔁 Post sharing
+* [ ] 🔍 Advanced search
+
+---
 
 ## 🤝 Contributing
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+
+1. **Fork** the repository
+2. Create a **feature branch**:
+
+   ```bash
+   git checkout -b feature/MyFeature
+   ```
+3. **Commit** your changes:
+
+   ```bash
+   git commit -m 'Add MyFeature'
+   ```
+4. **Push** to GitHub:
+
+   ```bash
+   git push origin feature/MyFeature
+   ```
+5. Open a **Pull Request**
+
+---
 
 ## 📜 License
-Distributed under the MIT License. See `LICENSE` for more information.
+
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
+
+---
 
 ## ✉️ Contact
-Ahmed Ibrahim - [@yourtwitter](https://twitter.com/yourtwitter) - email@example.com
 
-Project Link: [https://github.com/yourusername/social-media-app](https://github.com/yourusername/social-media-app)
+**Ahmed Ibrahim**
+[Twitter](https://twitter.com/yourtwitter) • [email@example.com](mailto:email@example.com)
+GitHub: [@yourusername](https://github.com/yourusername)
+Project Repo: [SociConnect](https://github.com/yourusername/social-media-app)
+
 ```
+
+---
